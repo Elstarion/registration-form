@@ -9,7 +9,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/registration-form/",
     element: <App />,
   },
   {
