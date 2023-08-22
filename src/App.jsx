@@ -1,6 +1,4 @@
-import './App.css';
-import Home from './routes/Home';
-// import { GlobalStyle } from './reset';
+import Home from "./routes/Home";
 
 function App() {
   return (
