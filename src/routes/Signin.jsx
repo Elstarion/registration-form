@@ -1,21 +1,21 @@
-import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { EntryPage } from './style';
-import FormCard, { FormMessage, StyledFormLinks } from '../components/FormCard';
-import Input from '../components/Input';
-import Button from '../components/Button';
-import Checkbox from '../components/Checkbox';
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { EntryPage } from "./style";
+import FormCard, { FormMessage, StyledFormLinks } from "../components/FormCard";
+import Input from "../components/Input";
+import Button from "../components/Button";
+import Checkbox from "../components/Checkbox";
 
 const Signin = () => {
   const navigate = useNavigate();
   const [check, setCheck] = useState(false);
 
   const [email, setEmail] = useState(() =>
-    localStorage.checkbox ? localStorage.email : ''
+    localStorage.checkbox ? localStorage.email : ""
   );
 
   const [password, setPassword] = useState(() =>
-    localStorage.checkbox ? localStorage.password : ''
+    localStorage.checkbox ? localStorage.password : ""
   );
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
@@ -25,26 +25,26 @@ const Signin = () => {
       ? localStorage.checkbox
       : (localStorage.checkbox = false);
 
-    localStorage.email ? localStorage.email : (localStorage.email = '');
+    localStorage.email ? localStorage.email : (localStorage.email = "");
 
     localStorage.password
       ? localStorage.password
-      : (localStorage.password = '');
+      : (localStorage.password = "");
 
-    const boxState = JSON.parse(localStorage.getItem('checkbox'));
+    const boxState = JSON.parse(localStorage.getItem("checkbox"));
     setCheck(boxState);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('checkbox', JSON.stringify(check));
+    localStorage.setItem("checkbox", JSON.stringify(check));
   }, [check]);
 
   function handleInputChange(e) {
     const { id, value } = e.target;
-    if (id === 'email') {
+    if (id === "email") {
       setEmail(value);
     }
-    if (id === 'password') {
+    if (id === "password") {
       setPassword(value);
     }
   }
@@ -56,12 +56,12 @@ const Signin = () => {
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (check && email !== '') {
+    if (check && email !== "") {
       localStorage.email = email;
       localStorage.password = password;
     } else {
-      localStorage.email = '';
-      localStorage.password = '';
+      localStorage.email = "";
+      localStorage.password = "";
     }
 
     const signInData = {
@@ -71,24 +71,24 @@ const Signin = () => {
 
     const signUpData = localStorage.formData
       ? JSON.parse(localStorage.formData)
-      : '';
+      : "";
 
     if (
       signInData.email === signUpData.email &&
       signInData.password === signUpData.password
     ) {
-      setSuccess('Sign in successful');
+      setSuccess("Sign in successful");
     } else {
-      setError('User does not exist');
+      setError("User does not exist");
       return;
     }
 
-    setEmail('');
-    setPassword('');
+    setEmail("");
+    setPassword("");
     setError(null);
 
     setTimeout(() => {
-      navigate('/');
+      navigate("/registration-form/");
     }, 1000);
   }
 
